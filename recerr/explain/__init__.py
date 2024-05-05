@@ -60,4 +60,4 @@ def update_residual_error(data: DataFrame, level: CriteriaLevel) -> DataFrame:
             **{criterion: lambda x: x[criterion] * x["residual_error"]}
         )
 
-    return updated_data.assign(residual_error=lambda x: x["residual_error"] - x[criteria].sum())
+    return updated_data.assign(residual_error=lambda x: x["residual_error"] - x[criteria].sum(axis=1))
