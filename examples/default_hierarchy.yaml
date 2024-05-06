@@ -1,0 +1,19 @@
+- - name: common
+    criteria:
+    - tp
+- - name: user
+    criteria:
+    - is_new_user_id
+    - is_lost_user_id
+  - name: item
+    criteria:
+    - is_new_item_id
+    - is_lost_item_id
+- - name: user
+    criteria:
+    - user_id_recommendation_superiority
+    - user_id_interaction_superiority
+  - name: item
+    criteria:
+    - item_id_recommendation_superiority
+    - item_id_interaction_superiority

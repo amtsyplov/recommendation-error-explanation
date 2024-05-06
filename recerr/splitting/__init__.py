@@ -1,11 +1,11 @@
-import numpy as np
+import math
 from pandas import DataFrame
 
 
 def time_based_split(data: DataFrame, test_size: float = 0.2) -> (DataFrame, DataFrame):
     assert "timestamp" in data.columns
     data_sorted = data.sort_values("timestamp", ignore_index=True)
-    train_size = len(data) * (1 - test_size)
+    train_size = math.floor(len(data) * (1 - test_size))
     return data_sorted[:train_size], data_sorted[train_size:]
 
 
@@ -35,7 +35,7 @@ def all_but_n_split(data: DataFrame, n: int, time_based: bool = True) -> (DataFr
 
 def user_stratified_split(data: DataFrame, test_size: float = 0.2, time_based: bool = True) -> (DataFrame, DataFrame):
     assert "user_id" in data.columns
-    user_counts = data[["user_id"]].assing(interaction=1).groupby("user_id").sum()
+    user_counts = data[["user_id"]].assign(interaction=1).groupby("user_id").sum()
     data_sorted = data.merge(user_counts, left_on="user_id", right_index=True)
 
     if "timestamp" in data and time_based:
