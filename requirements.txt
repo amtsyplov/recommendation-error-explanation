@@ -16,3 +16,8 @@ scipy==1.13.0
 six==1.16.0
 threadpoolctl==3.5.0
 tzdata==2024.1
+
+PyYAML~=6.0.1
+recerr~=1.0.0
+click~=8.1.7
+setuptools~=68.2.2
